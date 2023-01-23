@@ -88,12 +88,14 @@ body {
   font-weight: bold;
   height: 18px;
   width: 18px;
-  border-radius: 4px;
   margin: 0 2px;
   cursor: pointer;
   border-radius: 50%;
+  transition: .3s;
 }
 
 .slider-controls .indicators ul li.active {
   background-color: #009688;
+  width: 35px;
+  border-radius: 9px;
 }
