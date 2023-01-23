@@ -81,11 +81,13 @@ body {
   margin-bottom: 10px;
 }
 
+ul {
+  list-style: none;
+}
+
 .slider-controls .indicators ul li {
   display: inline-block;
   background-color: #f6f6f6;
-  color: #333;
-  font-weight: bold;
   height: 18px;
   width: 18px;
   margin: 0 2px;
