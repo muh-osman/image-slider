@@ -1,57 +1,52 @@
-// Get Slider Items | Array.form [ES6 Feature]
-var sliderImages = Array.from(document.querySelectorAll('.slider-container img'));
+let sliderImages = document.querySelectorAll('.slider-container img');
 
-// Get Number Of Slides
-var slidesCount = sliderImages.length;
+// Number Of Slides
+let slidesCount = sliderImages.length; // 5
 
-// Set Current Slide
-var currentSlide = 1;
-
-// Slide Number Element
-var slideNumberElement = document.getElementById('slide-number');
+// Default Slide
+let currentSlide = 1;
 
 // Previous and Next Buttons
-var nextButton = document.getElementById('next');
-var prevButton = document.getElementById('prev');
+let nextButton = document.getElementById('next');
+let prevButton = document.getElementById('prev');
+
 
 // Handle Click on Previous and Next Buttons
 nextButton.onclick = nextSlide;
 prevButton.onclick = prevSlide;
 
-// Create The Main UL Element
-var paginationElement = document.createElement('ul');
 
-// Set ID On Created Ul Element
-paginationElement.setAttribute('id', 'pagination-ul');
+// Create The Main <ul> Element
+let paginationElement = document.createElement('ul');
+
+// Set ID On Created <ul> Element
+paginationElement.id = 'pagination-ul';
 
 // Create List Items Based On Slides Count
-for (var i = 1; i <= slidesCount; i++) {
+for (let i = 1; i <= slidesCount; i++) {
 
-  // Create The LI
-  var paginationItem = document.createElement('li');
+  // Create The <li>
+  let paginationItem = document.createElement('li');
 
   // Set Custom Attribute
   paginationItem.setAttribute('data-index', i);
 
-  // Set Item Content
-  paginationItem.appendChild(document.createTextNode(i));
-
-  // Append Items to The Main Ul List
+  // Append Items to The Main <ul> List
   paginationElement.appendChild(paginationItem);
 
 }
 
-// Add The Created UL Element to The Page
+// Add The Created <ul> Element to The Page
 document.getElementById('indicators').appendChild(paginationElement);
 
-// Get The New Created UL
-var paginationCreatedUl = document.getElementById('pagination-ul');
+// Get The New Created <ul>
+let paginationCreatedUl = document.getElementById('pagination-ul');
 
-// Get Pagination Items | Array.form [ES6 Feature]
-var paginationsBullets = Array.from(document.querySelectorAll('#pagination-ul li'));
+// Get Pagination Items
+let paginationsBullets = document.querySelectorAll('#pagination-ul li');
 
 // Loop Through All Bullets Items
-for (var i = 0; i < paginationsBullets.length; i++) {
+for (let i = 0; i < paginationsBullets.length; i++) {
 
   paginationsBullets[i].onclick = function () {
 
@@ -68,16 +63,16 @@ theChecker();
 
 // Next Slide Function
 function nextSlide() {
+    // 5 = 5
+    if (currentSlide === slidesCount) {
 
-  if (nextButton.classList.contains('disabled')) {
-
-    // Do Nothing
-    return false;
+    // Back to first img
+    currentSlide = 1;
+    theChecker();
 
   } else {
 
     currentSlide++;
-
     theChecker();
 
   }
@@ -87,10 +82,11 @@ function nextSlide() {
 // Previous Slide Function
 function prevSlide() {
 
-  if (prevButton.classList.contains('disabled')) {
+  if (currentSlide === 1) {
 
-    // Do Nothing
-    return false;
+    // Go to last img
+    currentSlide = slidesCount;
+    theChecker();
 
   } else {
 
@@ -105,9 +101,6 @@ function prevSlide() {
 // Create The Checker Function
 function theChecker() {
 
-  // Set The Slide Number
-  slideNumberElement.textContent = 'Slide #' + (currentSlide) + ' of ' + (slidesCount);
-
   // Remove All Active Classes
   removeAllActive();
 
@@ -117,48 +110,15 @@ function theChecker() {
   // Set Active Class on Current Pagination Item
   paginationCreatedUl.children[currentSlide - 1].classList.add('active');
 
-  // Check if Current Slide is The First
-  if (currentSlide == 1) {
-
-    // Add Disabled Class on Previous Button
-    prevButton.classList.add('disabled');
-
-  } else {
-
-    // Remove Disabled Class From Previous Button
-    prevButton.classList.remove('disabled');
-
-  }
-
-  // Check if Current Slide is The Last
-  if (currentSlide == slidesCount) {
-
-    // Add Disabled Class on Next Button
-    nextButton.classList.add('disabled');
-
-  } else {
-
-    // Remove Disabled Class From Next Button
-    nextButton.classList.remove('disabled');
-
-  }
-
 }
 
 // Remove All Active Classes From Images and Pagination Bullets
 function removeAllActive() {
 
-  // Loop Through Images
-  sliderImages.forEach(function (img) {
+  // Loop Through Images & Loop Through Pagination Bullets
+  [...sliderImages, ...paginationsBullets].forEach(function (e) {
 
-    img.classList.remove('active');
-
-  });
-
-  // Loop Through Pagination Bullets
-  paginationsBullets.forEach(function (bullet) {
-
-    bullet.classList.remove('active');
+    e.classList.remove('active');
 
   });
 

@@ -3,85 +3,97 @@
   margin: 0;
   padding: 0;
 }
+
 body {
-  font-family: Tahoma, Arial;
+  height: 100vh;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.slider-container {
-  margin: 10px auto;
+
+.box {
+  position: relative;
   width: 1024px;
   height: 576px;
+}
+
+.slider-container {
   position: relative;
 }
+
 .slider-container img {
   position: absolute;
   opacity: 0;
   transition: opacity 1s;
   z-index: 1;
 }
+
 .slider-container img.active {
   opacity: 1;
 }
-.slider-container .slide-number {
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  padding: 5px 10px;
-  font-size: 20px;
-  z-index: 2;
-  border-radius: 6px;
-}
+
 .slider-controls {
-  width: 800px;
-  margin: auto;
+  width: 100%;
   overflow: hidden;
+  position: absolute;
+  z-index: 999;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
 }
+
 .slider-controls .prev,
 .slider-controls .next {
-  background-color: #009688;
   color: #fff;
-  font-size: 16px;
   text-align: center;
   cursor: pointer;
-  border-radius: 4px;
-  padding: 5px;
   user-select: none;
-  width: 20%;
+  width: 14%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .5s;
+  opacity: 0;
 }
+
+.slider-controls .prev:hover,
+.slider-controls .next:hover {
+  opacity: 1;
+  transition: all .5s;
+}
+
 .slider-controls .prev {
-  float: left;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
 }
+
 .slider-controls .next {
-  float: right;
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
 }
-.slider-controls .prev.disabled,
-.slider-controls .next.disabled {
-  background-color: rgba(0, 150, 136, 0.5);
-  cursor: no-drop;
+
+.slider-controls svg {
+  width: 50px;
+  height: 50px;
 }
+
 .slider-controls .indicators {
-  width: 60%;
-  float: left;
+  align-self: flex-end;
+  margin-bottom: 10px;
 }
-.slider-controls .indicators ul {
-  list-style: none;
-  margin: 0;
-  text-align: center;
-}
+
 .slider-controls .indicators ul li {
   display: inline-block;
   background-color: #f6f6f6;
   color: #333;
   font-weight: bold;
-  height: 28px;
-  width: 28px;
+  height: 18px;
+  width: 18px;
   border-radius: 4px;
   margin: 0 2px;
-  line-height: 28px;
   cursor: pointer;
+  border-radius: 50%;
 }
+
 .slider-controls .indicators ul li.active {
   background-color: #009688;
-  color: #fff;
 }
